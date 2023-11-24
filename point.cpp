@@ -9,32 +9,30 @@ int dist(std::vector<double> coord1, std::vector<double> coord2){
     return sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
 }
 char Point::checkColl(const Point& otherPoint){
-    return dist({this->x,this->y},{otherPoint.x,otherPoint.y})<this->radius+otherPoint.radius;//this->x,otherPoint.x,this->y,otherPoint.y
+    return dist(this->coords,otherPoint.coords)<this->radius+otherPoint.radius;//this->x,otherPoint.x,this->y,otherPoint.y
 }
-Point::Point(int mass, double radius, double x, double y) {
+Point::Point(int mass, double radius, std::vector<double> coords) {
     this->radius = radius;
     this->mass = mass;
-    this->x = x;
-    this->y = y;
+    this->coords = coords;
 }
 Point::Point() {
     this->radius = 1;
     this->mass = 1;
-    this->x = 1;
-    this->y = 1;
+    this->coords = {1,1};
 }
 char Point::attract(Point& otherPoint) {
-    double r = dist({x,y},{otherPoint.x,otherPoint.y});
+    double r = dist(coords,otherPoint.coords);
     double F = this->mass*otherPoint.mass/(r*r);
-    double ax = F/(x-otherPoint.x);
-    double ay = F/(y-otherPoint.y);
-    vx+=ax;
-    vy+=ay;
+    double ax = F/(coords[0]-otherPoint.coords[0]);
+    double ay = F/(coords[1]-otherPoint.coords[1]);
+    vel[0]+=ax;
+    vel[1]+=ay;
     return 0;
 }
 char Point::move(){
-    x+=vx;
-    y+=vy;
+    coords[0]+=vel[0];
+    coords[1]+=vel[1];
     return 0;
 }
 char Point::collideForce(){
