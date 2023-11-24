@@ -1,12 +1,17 @@
 #include <cmath>
 #include "point.h"
-int dist(int x1, int x2, int y1, int y2){
+#include <vector>
+int dist(std::vector<double> coord1, std::vector<double> coord2){
+    double x1 = coord1[0];
+    double y1 = coord1[1];
+    double x2 = coord2[0];
+    double y2 = coord2[1];
     return sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
 }
 char Point::checkColl(const Point& otherPoint){
-    return dist(this->x,otherPoint.x,this->y,otherPoint.y)<this->radius+otherPoint.radius;
+    return dist({this->x,this->y},{otherPoint.x,otherPoint.y})<this->radius+otherPoint.radius;//this->x,otherPoint.x,this->y,otherPoint.y
 }
-Point::Point(int mass, int radius, int x, int y) {
+Point::Point(int mass, double radius, double x, double y) {
     this->radius = radius;
     this->mass = mass;
     this->x = x;
@@ -19,10 +24,10 @@ Point::Point() {
     this->y = 1;
 }
 char Point::attract(Point& otherPoint) {
-    int r = dist(x,otherPoint.x,y,otherPoint.y);
-    int F = this->mass*otherPoint.mass/(r*r);
-    int ax = F/(x-otherPoint.x);
-    int ay = F/(y-otherPoint.y);
+    double r = dist({x,y},{otherPoint.x,otherPoint.y});
+    double F = this->mass*otherPoint.mass/(r*r);
+    double ax = F/(x-otherPoint.x);
+    double ay = F/(y-otherPoint.y);
     vx+=ax;
     vy+=ay;
     return 0;

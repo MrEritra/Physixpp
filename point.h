@@ -1,12 +1,12 @@
 class Point {
     public:
-        int mass = 1;
-        int radius = 1;
-        int x = 0;
-        int y = 0;
-        int vx = 0;
-        int vy = 0;
-        Point(int mass, int radius, int x, int y);
+        double mass = 1;
+        double radius = 1;
+        double x = 0;
+        double y = 0;
+        double vx = 0;
+        double vy = 0;
+        Point(int mass, double radius, double x, double y);
         Point();
         char attract(Point& otherPoint);
         char move();
