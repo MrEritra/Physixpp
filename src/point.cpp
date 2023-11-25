@@ -18,10 +18,14 @@ Point::Point(int mass, double radius, Vec2 position, Vec2 velocity) {
 void Point::attract(const Point& otherPoint) {
     double r = dist(position,otherPoint.position);
     double F = this->mass*otherPoint.mass/(r*r);
-    double ax = F/(position.x-otherPoint.position.x);
-    double ay = F/(position.y-otherPoint.position.y);
-    velocity.x-=ax;
-    velocity.y-=ay;
+    double distx = abs(position.x - otherPoint.position.x);
+    double disty = abs(position.y - otherPoint.position.y);
+    double ax = (F * (distx / (distx+disty)) ) / mass;
+    double ay = (F * (disty / (distx+disty)) ) / mass;
+    double signX = (position.x - otherPoint.position.x) / distx;
+    double singY = (position.y - otherPoint.position.y) / disty;
+    velocity.x-=ax * signX;
+    velocity.y-=ay * singY;
 }
 
 void Point::move() {
