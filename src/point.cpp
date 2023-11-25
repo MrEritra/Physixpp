@@ -37,7 +37,12 @@ void Point::move() {
     position.x += velocity.x;
     position.y += velocity.y;
 }
-void Point::collideForce(const Point& otherPoint) {
+void Point::yu_gi_oh_FusionCard(const Point& otherPoint) {
+    
+    velocity.x+=otherPoint.velocity.x*otherPoint.mass/this->mass;
+    velocity.y+=otherPoint.velocity.y*otherPoint.mass/this->mass;
+    radius = sqrt(this->radius*this->radius+otherPoint.radius*otherPoint.radius);
+    mass+=otherPoint.mass;
     
 }
 

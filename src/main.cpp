@@ -17,7 +17,7 @@ int main() {
         points[i].position = { x, y};
         double vx = (rand() % 100);
         double vy = (rand() % 100);
-        points[i].velocity = {vx/ 100 / 8,vy/ 100 / 8};
+        //points[i].velocity = {vx/ 100 / 8,vy/ 100 / 8};
             
     }
     //window.setFramerateLimit(60);
@@ -36,6 +36,20 @@ int main() {
                     break;
                 points[i0].attract(points[i1]);
             }
+        }
+        for (uint32_t i0 = 0; i0 < points.size(); i0++) {
+            for (uint32_t i1 = 0; i1 < points.size(); i1++) {
+                if (i0 == i1)
+                    break;
+                if (points[i0].checkColl(points[i1])) {
+                    points[i0].yu_gi_oh_FusionCard(points[i1]);
+                    points[i1] = points[points.size()-1];
+                    points.pop_back();
+                }
+                if (i0 >= points.size()) 
+                    break;
+            }
+            
         }
         //std::cout << points[10].position.x << " : " << points[10].position.y << "\n";
         sf::Event event;
