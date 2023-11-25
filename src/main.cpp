@@ -5,7 +5,7 @@
 #define WINDOWHEIGHT 1000
 #define WINDOWWIDTH 1200
 int main(int argc, char* argv[]) {
-    sf::RenderWindow window(sf::VideoMode(WINDOWWIDTH, WINDOWHEIGHT), "My window");
+    sf::RenderWindow window(sf::VideoMode(WINDOWWIDTH, WINDOWHEIGHT), "Femboy physix simulator");
     // run the program as long as the window is open
     srand (time(NULL));
     std::vector<Point> points(25);
