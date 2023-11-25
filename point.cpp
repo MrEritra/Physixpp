@@ -1,6 +1,11 @@
 #include <cmath>
 #include "point.h"
 #include <vector>
+typedef struct{
+    double x;
+    double y;
+} vector2;
+#define G .00000000001
 int dist(std::vector<double> coord1, std::vector<double> coord2){
     double x1 = coord1[0];
     double y1 = coord1[1];
@@ -23,9 +28,9 @@ Point::Point() {
 }
 char Point::attract(Point& otherPoint) {
     double r = dist(coords,otherPoint.coords);
-    double F = this->mass*otherPoint.mass/(r*r);
-    double ax = F/(coords[0]-otherPoint.coords[0]);
-    double ay = F/(coords[1]-otherPoint.coords[1]);
+    double a = G*otherPoint.mass/(r*r);
+    double ax = a/(coords[0]-otherPoint.coords[0]);
+    double ay = a/(coords[1]-otherPoint.coords[1]);
     vel[0]+=ax;
     vel[1]+=ay;
     return 0;
@@ -35,6 +40,11 @@ char Point::move(){
     coords[1]+=vel[1];
     return 0;
 }
-char Point::collideForce(){
+char Point::collideForce(Point& otherPoint){
+    if(this->checkColl(otherPoint)){
+        this->radius = sqrt(this->radius*this->radius+otherPoint.radius*otherPoint.radius);
+        this->mass+=otherPoint.mass;2
+        delete &otherPoint;
+    }
     return 0;
 }

@@ -5,7 +5,7 @@
 #include <ctime>
 #include <iostream>
 //Setup
-#define nums 100
+#define nums 2
 Point points[nums];
 void setup(){
     for(short i = 0; i < nums; i++){
@@ -19,14 +19,15 @@ void iterate(){
             if(j==i){
                 continue;
             }
-            points[i].attract(points[j]);
+            points[i].collideForce(points[j]);
         }
-    }
-    for(short i = 0; i < nums; i++){
-        points[i].move();
     }
 }
 int main(){
     setup();
-    std::cout << ((points[0].checkColl(points[1]))?"True":"False") << std::endl;
+    while(1){
+        iterate();
+        printf("%d,%d\n",points[0].coords[0],points[0].coords[12]);
+        //std::cout << ((points[0].checkColl(points[1]))?"True":"False") << std::endl;
+    }
 }

@@ -9,6 +9,6 @@ class Point {
         Point();
         char attract(Point& otherPoint);
         char move();
-        char collideForce();
+        char collideForce(Point& otherPoint);
         char checkColl(const Point& otherPoint);
 };
