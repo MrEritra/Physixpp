@@ -7,8 +7,7 @@ struct Vec2 {
 
 class Point {
     public:   
-        Point(int mass, double radius, double x, double y);
-        Point();
+        Point(int mass = 1, double radius = 10, Vec2 position = {0,0}, Vec2 velocity = {0,0});
         void attract(const Point& otherPoint);
         void move();
         void collideForce();

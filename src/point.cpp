@@ -6,17 +6,13 @@ int dist(Vec2 pos1, Vec2 pos2) {
 bool Point::checkColl(const Point& otherPoint){
     return dist(position,otherPoint.position) < (radius + otherPoint.radius);
 }
-Point::Point(int mass, double radius, double x, double y) {
+Point::Point(int mass, double radius, Vec2 position, Vec2 velocity) {
     this->radius = radius;
     this->mass = mass;
-    position.x = x;
-    position.y = y;
-}
-Point::Point() {
-    radius = 1;
-    mass = 1;
-    position.x = 1;
-    position.y = 1;
+    this->position.x = position.x;
+    this->position.y = position.y;
+    this->velocity.x = velocity.x;
+    this->velocity.y = velocity.y;
 }
 
 void Point::attract(const Point& otherPoint) {
