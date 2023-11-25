@@ -39,17 +39,22 @@ void Point::move() {
 }
 void Point::yu_gi_oh_FusionCard(const Point& otherPoint) {
     
-    velocity.x+=otherPoint.velocity.x*otherPoint.mass/this->mass;
-    velocity.y+=otherPoint.velocity.y*otherPoint.mass/this->mass;
-    radius = sqrt(this->radius*this->radius+otherPoint.radius*otherPoint.radius);
+    position.x = position.x + ((otherPoint.position.x - position.x) * mass / (mass + otherPoint.mass));
+    position.y = position.y + ((otherPoint.position.y - position.y) * mass / (mass + otherPoint.mass));
+    velocity.x = (velocity.x * mass + otherPoint.velocity.x * otherPoint.mass) / (otherPoint.mass + mass);
+    velocity.x = sqrt((velocity.x * velocity.x * mass + otherPoint.velocity.x * otherPoint.velocity.x * otherPoint.mass) / (otherPoint.mass + mass));
+    velocity.y = sqrt((velocity.y * velocity.y * mass + otherPoint.velocity.y * otherPoint.velocity.y * otherPoint.mass) / (otherPoint.mass + mass));
     mass+=otherPoint.mass;
+
+    this->radius = sqrt(this->radius*this->radius+otherPoint.radius*otherPoint.radius);
+    
     
 }
 
 void Point::draw(sf::RenderWindow* window) {
     sf::CircleShape shape(radius);
     if (mass > 0) {
-        shape.setFillColor(sf::Color(0xFF, 0x00, 0x00));
+        shape.setFillColor(sf::Color(0xFF, 0xFF, 0xFF));
     } else {
         shape.setFillColor(sf::Color(0x00, 0x00, 0xFF));
     }

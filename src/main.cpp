@@ -17,7 +17,7 @@ int main(int argc, char* argv[]) {
             points[i].mass = (rand() % 30 + 0.1) / points.size();
         }
         
-        points[i].radius = rand() % 60 + 1;
+        points[i].radius = sqrt(points[i].mass)*20;
         double x = rand() % WINDOWWIDTH;
         double y = rand() % WINDOWHEIGHT;
         //std::cout << x << "\n";
