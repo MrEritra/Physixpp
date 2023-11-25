@@ -42,8 +42,8 @@ char Point::move(){
 }
 char Point::collideForce(Point& otherPoint){
     if(this->checkColl(otherPoint)){
-        this->vel[0]+=otherPoint.vel[0]*otherPoint.mass/this->mass;
-        this->vel[1]+=otherPoint.vel[1]*otherPoint.mass/this->mass;
+        this->vel[0]=vel[0]*this->mass/otherPoint.mass+otherPoint.vel[0]*otherPoint.mass/this->mass;
+        this->vel[1]=vel[0]*this->mass/otherPoint.mass+otherPoint.vel[1]*otherPoint.mass/this->mass;
         this->radius = sqrt(this->radius*this->radius+otherPoint.radius*otherPoint.radius);
         this->mass+=otherPoint.mass;
         delete &otherPoint;
