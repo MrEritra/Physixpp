@@ -1,19 +1,26 @@
 #include "defines.hpp"
 #include <iostream>
 #include "draw.hpp"
+#include "point.hpp"
 #define WINDOWHEIGHT 600
 #define WINDOWWIDTH 800
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(WINDOWWIDTH, WINDOWHEIGHT), "My window");
-    Vec2 pos = {0,0};
     // run the program as long as the window is open
+    Point a = Point(10,30,0,0);
+    Point b = Point(20,60,600,600);
     while (window.isOpen())
     {
         window.clear();
         // check all the window's events that were triggered since the last iteration of the loop
         
-        draw(pos,50,&window);
+        a.draw(&window);
+        b.draw(&window);
+        a.move();
+        b.move();
+        a.attract(b);
+        b.attract(a);
         //pos.x += 0.1;
         //pos.y += 0.1;
         sf::Event event;
