@@ -48,7 +48,11 @@ void Point::yu_gi_oh_FusionCard(const Point& otherPoint) {
 
 void Point::draw(sf::RenderWindow* window) {
     sf::CircleShape shape(radius);
-    shape.setFillColor(sf::Color(0xFF, 0xFF, 0xFF));
+    if (mass > 0) {
+        shape.setFillColor(sf::Color(0xFF, 0x00, 0x00));
+    } else {
+        shape.setFillColor(sf::Color(0x00, 0x00, 0xFF));
+    }
     shape.setPosition(position.x-radius,position.y-radius);
     window->draw(shape);
 }

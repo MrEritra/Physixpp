@@ -4,12 +4,19 @@
 #include "point.hpp"
 #define WINDOWHEIGHT 1000
 #define WINDOWWIDTH 1200
-int main() {
+int main(int argc, char* argv[]) {
     sf::RenderWindow window(sf::VideoMode(WINDOWWIDTH, WINDOWHEIGHT), "My window");
     // run the program as long as the window is open
+    srand (time(NULL));
     std::vector<Point> points(50);
     for (uint32_t i = 0; i < points.size(); i++) {
-        points[i].mass = (rand() % 30 + 0.1) / points.size();
+        if (argc == 2) {
+            double sign = (rand() % 2 -0.5) * 2;
+            points[i].mass = (rand() % 30 + 0.1) / points.size() * sign;
+        } else {
+            points[i].mass = (rand() % 30 + 0.1) / points.size();
+        }
+        
         points[i].radius = rand() % 60 + 1;
         double x = rand() % WINDOWWIDTH;
         double y = rand() % WINDOWHEIGHT;
