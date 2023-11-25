@@ -8,7 +8,7 @@ int main(int argc, char* argv[]) {
     sf::RenderWindow window(sf::VideoMode(WINDOWWIDTH, WINDOWHEIGHT), "My window");
     // run the program as long as the window is open
     srand (time(NULL));
-    std::vector<Point> points(50);
+    std::vector<Point> points(25);
     for (uint32_t i = 0; i < points.size(); i++) {
         if (argc == 2) {
             double sign = (rand() % 2 -0.5) * 2;
@@ -24,6 +24,7 @@ int main(int argc, char* argv[]) {
         points[i].position = { x, y};
         double vx = (rand() % 100);
         double vy = (rand() % 100);
+        points[i].image = rand() % 3;
         //points[i].velocity = {vx/ 100 / 8,vy/ 100 / 8};
             
     }

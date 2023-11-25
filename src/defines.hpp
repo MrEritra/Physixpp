@@ -4,3 +4,5 @@
 #include <cmath>
 #include <array>
 #include <vector>
+#include "SFML/Audio.hpp"
+#include <iostream>

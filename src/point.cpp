@@ -49,15 +49,53 @@ void Point::yu_gi_oh_FusionCard(const Point& otherPoint) {
     this->radius = sqrt(this->radius*this->radius+otherPoint.radius*otherPoint.radius);
     
     
+    sf::SoundBuffer buffer;
+    if (!buffer.loadFromFile("../../../res/Sound.wav")) {
+        std::cout << "DEBUG\n";
+        return;
+    }
+    sf::Sound sound;
+    sound.setBuffer(buffer);
+    //sound.play();
 }
 
 void Point::draw(sf::RenderWindow* window) {
     sf::CircleShape shape(radius);
-    if (mass > 0) {
-        shape.setFillColor(sf::Color(0xFF, 0xFF, 0xFF));
-    } else {
-        shape.setFillColor(sf::Color(0x00, 0x00, 0xFF));
+    sf::Texture texture;
+    std::string texturestring;
+    switch (image)
+    {
+    case 0:
+        texturestring = "../../../res/Catgirl_color.png";
+        break;
+    case 1:
+        texturestring = "../../../res/Femboy_color.png";
+        break;
+    case 2:
+        texturestring = "../../../res/Catgirl-Mondface_color.png";
+        break;
+    
+    default:
+        break;
     }
-    shape.setPosition(position.x-radius,position.y-radius);
-    window->draw(shape);
+    if (!texture.loadFromFile(texturestring)) {
+        if (mass > 0) {
+            shape.setFillColor(sf::Color(0xFF, 0xFF, 0xFF));
+        } else {
+            shape.setFillColor(sf::Color(0x00, 0x00, 0xFF));
+        }
+        shape.setPosition(position.x-radius,position.y-radius);
+        window->draw(shape);
+        return;
+    }
+    sf::Sprite sprite;
+    sprite.setTexture(texture);
+
+    //sprite.setTextureRect(sf::IntRect(0,0,radius,radius));
+    sprite.setScale(sf::Vector2f(radius/10,radius/10));
+
+
+    sprite.setPosition(position.x-radius,position.y-radius);
+    window->draw(sprite);
+    
 }

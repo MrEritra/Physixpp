@@ -17,6 +17,8 @@ class Point {
         double radius = 1;
         Vec2 position = {0,0};
         Vec2 velocity = {0,0};
+        uint32_t image = 0;
     private:
+
         
 };

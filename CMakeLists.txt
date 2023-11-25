@@ -13,7 +13,7 @@ FetchContent_MakeAvailable(SFML)
 file(GLOB sources CONFIGURE_DEPENDS src/*.hpp src/*.cpp)
 
 add_executable(physixpp ${sources})
-target_link_libraries(physixpp PRIVATE sfml-graphics)
+target_link_libraries(physixpp PRIVATE sfml-graphics sfml-audio)
 target_compile_features(physixpp PRIVATE cxx_std_17)
 
 if(WIN32)
