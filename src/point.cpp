@@ -17,9 +17,14 @@ Point::Point(int mass, double radius, Vec2 position, Vec2 velocity) {
 
 void Point::attract(const Point& otherPoint) {
     double r = dist(position,otherPoint.position);
+    if (r == 0)
+        return;
     double F = this->mass*otherPoint.mass/(r*r);
     double distx = abs(position.x - otherPoint.position.x);
     double disty = abs(position.y - otherPoint.position.y);
+    if (distx == 0 || disty == 0) {
+        return;
+    }
     double ax = (F * (distx / (distx+disty)) ) / mass;
     double ay = (F * (disty / (distx+disty)) ) / mass;
     double signX = (position.x - otherPoint.position.x) / distx;
@@ -32,8 +37,8 @@ void Point::move() {
     position.x += velocity.x;
     position.y += velocity.y;
 }
-void Point::collideForce() {
-
+void Point::collideForce(const Point& otherPoint) {
+    
 }
 
 void Point::draw(sf::RenderWindow* window) {

@@ -7,19 +7,20 @@
 int main() {
     sf::RenderWindow window(sf::VideoMode(WINDOWWIDTH, WINDOWHEIGHT), "My window");
     // run the program as long as the window is open
-    std::vector<Point> points(10);
+    std::vector<Point> points(50);
     for (uint32_t i = 0; i < points.size(); i++) {
-        points[i].mass = (rand() % 60 + 0.1) / points.size();
+        points[i].mass = (rand() % 30 + 0.1) / points.size();
         points[i].radius = rand() % 60 + 1;
         double x = rand() % WINDOWWIDTH;
         double y = rand() % WINDOWHEIGHT;
-        std::cout << x << "\n";
+        //std::cout << x << "\n";
         points[i].position = { x, y};
         double vx = (rand() % 100);
         double vy = (rand() % 100);
         points[i].velocity = {vx/ 100 / 8,vy/ 100 / 8};
             
     }
+    //window.setFramerateLimit(60);
     while (window.isOpen()) {
         window.clear();
         // check all the window's events that were triggered since the last iteration of the loop
@@ -36,8 +37,7 @@ int main() {
                 points[i0].attract(points[i1]);
             }
         }
-        //pos.x += 0.1;
-        //pos.y += 0.1;
+        //std::cout << points[10].position.x << " : " << points[10].position.y << "\n";
         sf::Event event;
         window.display();
         while (window.pollEvent(event)) {
