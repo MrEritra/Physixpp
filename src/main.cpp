@@ -1,6 +1,6 @@
-#include "defines.h"
+#include "defines.hpp"
 #include <iostream>
-#include "draw.h"
+#include "draw.hpp"
 #define WINDOWHEIGHT 600
 #define WINDOWWIDTH 800
 int main()

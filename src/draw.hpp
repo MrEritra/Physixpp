@@ -1,4 +1,4 @@
-#include "defines.h"
+#include "defines.hpp"
 
 struct Vec2 {
     double x,y;
