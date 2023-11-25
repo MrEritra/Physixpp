@@ -10,7 +10,9 @@ FetchContent_Declare(SFML
     GIT_TAG 2.6.x)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(physixpp src/main.cpp)
+file(GLOB sources CONFIGURE_DEPENDS src/*.hpp src/*.cpp)
+
+add_executable(physixpp ${sources})
 target_link_libraries(physixpp PRIVATE sfml-graphics)
 target_compile_features(physixpp PRIVATE cxx_std_17)
 
